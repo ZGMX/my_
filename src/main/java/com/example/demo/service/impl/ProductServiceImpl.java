@@ -28,13 +28,13 @@ import java.util.List;
  * 创建时间：2018/7/6 16:07
  */
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductMapper productMapper;
 
     @Override
-    @TargetDataSource(name="ds1")
+    @TargetDataSource(name = "ds1")
     public Product queryProductById(long l) {
         return productMapper.selectByPrimaryKey(l);
     }
@@ -44,22 +44,23 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> queryProductList() {
         return productMapper.queryProductList();
     }
+
     @Override
     public List<Product> queryProductLists() {
         return productMapper.queryProductList();
     }
 
     @Override
-    public void upLoad(InputStream in, MultipartFile myFile){
+    public void upLoad(InputStream in, MultipartFile myFile) {
         try {
             List<Object[]> list = ExcelUtil.getBankListByExcel(in, myFile.getOriginalFilename());
             List<Product> productList = new ArrayList<>();
-            ConvToEntity.convToEntity(list,productList,"com.example.demo.domain.Product");
+            ConvToEntity.convToEntity(list, productList, "com.example.demo.domain.Product");
             System.out.println(productList.size());
-            for (Product p:productList) {
+            for (Product p : productList) {
                 productMapper.insertSelective(p);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

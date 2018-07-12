@@ -5,14 +5,14 @@ import java.util.Collection;
 import java.util.Map;
 
 public class ServiceValidate {
-    
-    private static final String DEFAULT_MSG = "服务器异常"; 
+
+    private static final String DEFAULT_MSG = "服务器异常";
 
     public ServiceValidate() {
         super();
     }
 
-    public static void isTrue(boolean expression,String msg) {
+    public static void isTrue(boolean expression, String msg) {
         if (expression == false) {
             throw new ServiceException(msg);
         }

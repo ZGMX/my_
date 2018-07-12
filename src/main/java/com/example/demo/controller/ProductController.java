@@ -31,38 +31,39 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping("hellos")
-    public ModelAndView hello(){
+    public ModelAndView hello() {
         ModelAndView modelAndView = new ModelAndView("hello");
         Product product = productService.queryProductById(15L);
-        modelAndView.addObject("product",product);
+        modelAndView.addObject("product", product);
         return modelAndView;
     }
+
     @RequestMapping("a")
-    public String dd(){
+    public String dd() {
         return "hello";
     }
 
 
     @RequestMapping("downLoad")
-    public void downLoad(HttpServletRequest request, HttpServletResponse response){
+    public void downLoad(HttpServletRequest request, HttpServletResponse response) {
         List<Product> productList = productService.queryProductList();
-        new ExcelUtil().setJspHeader(request,response,new Product(),productList,"产品列表","产品列表导出",1);
+        new ExcelUtil().setJspHeader(request, response, new Product(), productList, "产品列表", "产品列表导出", 1);
     }
 
     @RequestMapping("downLoads")
-    public void downLoads(HttpServletRequest request, HttpServletResponse response){
+    public void downLoads(HttpServletRequest request, HttpServletResponse response) {
         List<Product> productList = productService.queryProductLists();
-        new ExcelUtil().setJspHeader(request,response,new Product(),productList,"产品列表","产品列表导出",1);
+        new ExcelUtil().setJspHeader(request, response, new Product(), productList, "产品列表", "产品列表导出", 1);
     }
 
     @RequestMapping("upLoad")
-    public String upLoad(MultipartFile myFile){
+    public String upLoad(MultipartFile myFile) {
         try {
             InputStream in = myFile.getInputStream();
-            productService.upLoad(in,myFile);
+            productService.upLoad(in, myFile);
             in.close();
             return "success";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

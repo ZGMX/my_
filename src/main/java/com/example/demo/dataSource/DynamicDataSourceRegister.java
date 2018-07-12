@@ -78,7 +78,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
     public DataSource buildDataSource(Map<String, Object> dsMap) {
         try {
             Object type = dsMap.get("type");
-            if (type == null){
+            if (type == null) {
                 type = DATASOURCE_TYPE_DEFAULT;// 默认DataSource
 
             }
@@ -136,16 +136,16 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
      * @param dataSource
      * @param env
      * @author SHANHY
-     * @create  2016年1月25日
+     * @create 2016年1月25日
      */
-    private void dataBinder(DataSource dataSource, Environment env){
+    private void dataBinder(DataSource dataSource, Environment env) {
         RelaxedDataBinder dataBinder = new RelaxedDataBinder(dataSource);
         //dataBinder.setValidator(new LocalValidatorFactory().run(this.applicationContext));
         dataBinder.setConversionService(conversionService);
         dataBinder.setIgnoreNestedProperties(false);//false
         dataBinder.setIgnoreInvalidFields(false);//false
         dataBinder.setIgnoreUnknownFields(true);//true
-        if(dataSourcePropertyValues == null){
+        if (dataSourcePropertyValues == null) {
             Map<String, Object> rpr = new RelaxedPropertyResolver(env, "spring.datasource").getSubProperties(".");
             Map<String, Object> values = new HashMap<>(rpr);
             // 排除已经设置的属性

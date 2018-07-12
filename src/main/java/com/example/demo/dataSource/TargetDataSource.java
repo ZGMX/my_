@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * 创建人：zgh
  * 创建时间：2018/7/5 14:24
  */
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface TargetDataSource {

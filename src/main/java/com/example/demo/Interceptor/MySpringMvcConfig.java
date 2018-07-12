@@ -22,7 +22,7 @@ import java.util.List;
  * 创建时间：2018/7/5 10:17
  */
 @Configuration
-public class MySpringMvcConfig extends WebMvcConfigurerAdapter{
+public class MySpringMvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private MyInterceptor myInterceptor;

@@ -125,9 +125,10 @@ public final class DateUtils {
         ServiceValidate.notNull(date);
         return new DateTime(date).minusMinutes(minutes).toDate();
     }
-    
+
     /**
      * 传入日期减少几小时
+     *
      * @param date
      * @param hours
      * @return
@@ -136,7 +137,7 @@ public final class DateUtils {
         ServiceValidate.notNull(date);
         return new DateTime(date).minusHours(hours).toDate();
     }
-    
+
     public static Date longToDate(long millis) {
         return new DateTime(millis).toDate();
     }
@@ -182,7 +183,7 @@ public final class DateUtils {
 
     /**
      * 返回当前日期距离N月之后之后的天数
-     *
+     * <p>
      * 例如：计算1月5日，距离2个月之后的3月5日 返回相差天数
      *
      * @param date
@@ -236,14 +237,16 @@ public final class DateUtils {
     public static String getSimpleDate() {
         return dateToStr(getNow(), DateEnum.DATE_SIMPLE);
     }
+
     /**
      * 返回365天后的日期，格式yyyy-MM-dd字符串
      *
      * @return
      */
     public static String getYearAfterDate() {
-        return dateToStr(plusDay(getNow(),365) , DateEnum.DATE_SIMPLE);
+        return dateToStr(plusDay(getNow(), 365), DateEnum.DATE_SIMPLE);
     }
+
     /**
      * 返回当前时间格式yyyyMMddHHmmss字符串
      *
@@ -290,6 +293,7 @@ public final class DateUtils {
      * 例：start = 2015-06-06 10:40:20
      * end = 2015-06-05 10:40:20
      * 返回值 1
+     *
      * @param start
      * @param end
      * @return 小于-1，等于0，大于1
@@ -300,16 +304,17 @@ public final class DateUtils {
 
     /**
      * 获取两个日期之间的所有日期
-     * @Description TODO
+     *
      * @param begin
      * @param end
      * @return
+     * @Description TODO
      */
-     public static  List<Date> getBetweenDates(Date begin, Date end) {
+    public static List<Date> getBetweenDates(Date begin, Date end) {
         List<Date> result = new ArrayList<Date>();
         Calendar tempStart = Calendar.getInstance();
         tempStart.setTime(begin);
-        while(begin.getTime()<=end.getTime()){
+        while (begin.getTime() <= end.getTime()) {
             result.add(tempStart.getTime());
             tempStart.add(Calendar.DAY_OF_MONTH, 1);
             begin = tempStart.getTime();
@@ -319,21 +324,22 @@ public final class DateUtils {
 
     /**
      * 获取两个日期之间的都有日期(日期字符串格式为yyyy-MM-dd)
+     *
      * @param beginStr
      * @param endStr
      * @return
      */
-    public static  List<String> getBetweenDateStrs(String beginStr,String endStr){
+    public static List<String> getBetweenDateStrs(String beginStr, String endStr) {
         List<String> result = new ArrayList<String>();
-        try{
-            Date begin = toDate(beginStr,DateEnum.DATE_SIMPLE);
-            Date end = toDate(endStr,DateEnum.DATE_SIMPLE);
-            List<Date> dates = getBetweenDates(begin,end);
-            for(Date date:dates){
-               result.add(dateToStr(date,DateEnum.DATE_SIMPLE));
+        try {
+            Date begin = toDate(beginStr, DateEnum.DATE_SIMPLE);
+            Date end = toDate(endStr, DateEnum.DATE_SIMPLE);
+            List<Date> dates = getBetweenDates(begin, end);
+            for (Date date : dates) {
+                result.add(dateToStr(date, DateEnum.DATE_SIMPLE));
             }
-        }  catch (Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         return result;
@@ -341,10 +347,11 @@ public final class DateUtils {
 
     /**
      * 将java.util.Date转换为java.time.LocalDate
+     *
      * @param dt
      * @return
      */
-    public static java.time.LocalDate dateToLocalDate(Date dt){
+    public static java.time.LocalDate dateToLocalDate(Date dt) {
         java.time.LocalDate localDate = null;
         if (dt == null) {
             localDate = java.time.LocalDate.now();
@@ -357,7 +364,7 @@ public final class DateUtils {
         return localDate;
     }
 
-    public static java.time.LocalDateTime dateToLocalDateTime(Date dt){
+    public static java.time.LocalDateTime dateToLocalDateTime(Date dt) {
         java.time.LocalDateTime localDate = null;
         if (dt == null) {
             localDate = java.time.LocalDateTime.now();
@@ -370,13 +377,13 @@ public final class DateUtils {
         return localDate;
     }
 
-    public static java.time.LocalDateTime stringToLocalDateTime(String date){
+    public static java.time.LocalDateTime stringToLocalDateTime(String date) {
         Date date1 = toDate(date, DateEnum.DATE_FORMAT);
         java.time.LocalDateTime localDate = dateToLocalDateTime(date1);
         return localDate;
     }
 
-    public static java.time.LocalDate stringToLocalDate(String date){
+    public static java.time.LocalDate stringToLocalDate(String date) {
         Date date1 = toDate(date, DateEnum.DATE_SIMPLE);
         java.time.LocalDate localDate = dateToLocalDate(date1);
         return localDate;

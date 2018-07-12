@@ -4,9 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Service层公用的Exception.
- * 
+ * <p>
  * 继承自RuntimeException, 从由Spring管理事务的函数中抛出时会触发事务回滚.
- * 
  */
 @Slf4j
 public class ServiceException extends RuntimeException {
